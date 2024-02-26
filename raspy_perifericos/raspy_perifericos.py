@@ -2,8 +2,6 @@ import time
 import paho.mqtt.client as mqtt
 import threading
 from clp import CLP
-from instrumento import Termometro
-
 
 client = mqtt.Client()
 
@@ -13,18 +11,18 @@ qos = 2
 meuCLP = CLP("CLP_1")
 
 
-def checarInstrumentos():
+def checar_instrumentos():
     while True:
         time.sleep(5)
         print("Checando instrumentos...")
-        enviar_dados_instrumentais()
+        publicar_dados_instrumentais()
 
 
-thread = threading.Thread(target=checarInstrumentos)
+thread = threading.Thread(target=checar_instrumentos)
 thread.start()
 
 
-def enviar_dados_instrumentais():
+def publicar_dados_instrumentais():
     for instrumento in meuCLP.instrumentos:
         client.publish("instrumentos/" + instrumento.nome, instrumento.lerMedida(), qos)
     client.publish("aparelhos/luminaria/exterior", "ligar", qos)

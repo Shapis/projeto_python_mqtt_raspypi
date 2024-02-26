@@ -3,15 +3,29 @@ class Aparelho:
 
     def __init__(self, nome, codigo):
         self.nome = nome
+        self.codigo = codigo
 
     def ligar(self):
-        raise Exception("Acao nao implementada!")
+        if self.estado == False:
+            print(f"Ligando {self.nome}...")
+            self.estado = True
+        else:
+            print(f"{self.nome} ja se encontra ligada...")
+        return self.estado
 
     def desligar(self):
-        raise Exception("Acao nao implementada!")
+        if self.estado == True:
+            print(f"Desligando {self.nome}...")
+            self.estado = False
+        else:
+            print(f"{self.nome} ja se encontra desligada...")
+        return self.estado
 
 
 class Ventilador(Aparelho):
+    def __init__(self, nome, codigo):
+        super().__init__(nome, codigo)
+
     pass
 
 
@@ -19,22 +33,11 @@ class Luminaria(Aparelho):
     def __init__(self, nome, codigo):
         super().__init__(nome, codigo)
 
-    def ligar(self):
-        if self.estado == False:
-            print("Ligando luminaria...")
-            self.estado = True
-        else:
-            print("Luminaria ja se encontra ligada...")
-        return self.estado
-
-    def desligar(self):
-        if self.estado == True:
-            print("Desligando luminaria...")
-            self.estado = False
-        else:
-            print("Luminaria ja se encontra desligada...")
-        return self.estado
+    pass
 
 
 class Porta(Aparelho):
+    def __init__(self, nome, codigo):
+        super().__init__(nome, codigo)
+
     pass

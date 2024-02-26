@@ -6,7 +6,7 @@ class Instrumento:
         self.nome = nome
         self.codigo = codigo
 
-    def lerMedida(self):
+    def ler_medida(self):
         raise Exception("Leitor nao implementado!")
 
 
@@ -15,10 +15,10 @@ class Termometro(Instrumento):
         super().__init__(nome, codigo)
         self.sensor = DS18B20(codigo)
 
-    def lerMedida(self):
+    def ler_medida(self):
         return self.sensor.read_temp()[0]
 
 
 class Presenciometro(Instrumento):
-    def lerMedida(self):
+    def ler_medida(self):
         return 10

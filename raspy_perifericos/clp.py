@@ -1,5 +1,5 @@
 from instrumento import Termometro, Presenciometro
-from aparelho import Luminaria
+from aparelho import Luminaria, Ventilador, Porta
 
 
 class CLP:
@@ -8,7 +8,12 @@ class CLP:
         # Termometro("termometro/quarto", "codigo_aqui"),
         Presenciometro("presenciometro/porta", "codigo_aqui"),
     ]
-    aparelhos = [Luminaria("luminaria/exterior", "codigo_aqui")]
+    aparelhos = [
+        Luminaria("luminaria/exterior", "codigo_aqui"),
+        Ventilador("ventilador/sala", "codigo_aqui"),
+        Ventilador("ventilador/quarto", "codigo_aqui"),
+        Porta("porta/sala", "codigo_aqui"),
+    ]
 
     def __init__(self, nome):
         self.nome = nome
