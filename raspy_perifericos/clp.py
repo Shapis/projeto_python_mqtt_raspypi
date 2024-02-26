@@ -5,7 +5,7 @@ class CLP:
     instrumentos = [
         Termometro("Termometro_1", "28-031600c422ff"),
         # Termometro("Termometro_2", "codigo_aqui"),
-        Presenciometro("Presenciometro_1"),
+        Presenciometro("Presenciometro_1", "codigo_aqui"),
     ]
 
     def __init__(self, nome):
