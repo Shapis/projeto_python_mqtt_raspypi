@@ -24,7 +24,9 @@ thread.start()
 
 def publicar_dados_instrumentais():
     for instrumento in meuCLP.instrumentos:
-        client.publish("instrumentos/" + instrumento.nome, instrumento.lerMedida(), qos)
+        client.publish(
+            "instrumentos/" + instrumento.nome, instrumento.ler_medida(), qos
+        )
     client.publish("aparelhos/luminaria/exterior", "ligar", qos)
     pass
 
