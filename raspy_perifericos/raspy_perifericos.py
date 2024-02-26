@@ -61,6 +61,7 @@ time.sleep(1)
 
 
 client.subscribe("instrumentos/#", qos)
+client.subscribe("aparelhos/#", qos)
 
 
 # client.publish(topic, payload, qos)
