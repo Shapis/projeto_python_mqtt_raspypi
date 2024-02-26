@@ -1,4 +1,6 @@
 class Aparelho:
+    estado = False  # Desligado
+
     def __init__(self, nome, codigo):
         self.nome = nome
 
@@ -11,7 +13,17 @@ class Ventilador(Aparelho):
 
 
 class Luminaria(Aparelho):
-    pass
+    def __init__(self, nome, codigo):
+        super().__init__(nome, codigo)
+
+    def executarAcao(self):
+        if self.estado == False:
+            print("Ligando luminaria...")
+            self.estado = True
+        else:
+            print("Desligando luminaria...")
+            self.estado = False
+        return self.estado
 
 
 class Porta(Aparelho):

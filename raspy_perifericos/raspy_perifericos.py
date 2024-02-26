@@ -27,12 +27,25 @@ thread.start()
 def enviar_dados_instrumentais():
     for instrumento in meuCLP.instrumentos:
         client.publish("instrumentos/" + instrumento.nome, instrumento.lerMedida(), qos)
+    client.publish("aparelhos/luminaria/exterior", "ligar", qos)
+    pass
+
+
+def controle_luminaria(payload):
+    if payload == "ligar":
+        print("Ligando luminaria...")
+    elif payload == "desligar":
+        print("Desligando luminaria...")
+    else:
+        print("Comando desconhecido.")
     pass
 
 
 # Lida com mensagens recebidas.
 def on_message(client, userdata, msg):
     print(f"Mensagem recebida no topico {msg.topic}: {msg.payload.decode()}")
+    if msg.topic == "aparelhos/luminaria/exterior":
+        controle_luminaria(msg.payload.decode())
 
 
 client.on_message = on_message
