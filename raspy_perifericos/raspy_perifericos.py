@@ -33,9 +33,9 @@ def enviar_dados_instrumentais():
 
 def controle_luminaria(payload):
     if payload == "ligar":
-        print("Ligando luminaria...")
+        meuCLP.aparelhos[0].ligar()
     elif payload == "desligar":
-        print("Desligando luminaria...")
+        meuCLP.aparelhos[0].desligar()
     else:
         print("Comando desconhecido.")
     pass
