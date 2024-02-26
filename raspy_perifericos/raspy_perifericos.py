@@ -2,6 +2,7 @@ import time
 import paho.mqtt.client as mqtt
 import threading
 from clp import CLP
+from instrumento import Termometro
 
 
 client = mqtt.Client()
@@ -16,14 +17,14 @@ def checarInstrumentos():
     while True:
         time.sleep(5)
         print("Checando instrumentos...")
-        enviar_dados()
+        enviar_dados_instrumentais()
 
 
 thread = threading.Thread(target=checarInstrumentos)
 thread.start()
 
 
-def enviar_dados():
+def enviar_dados_instrumentais():
     for instrumento in meuCLP.instrumentos:
         client.publish("instrumentos/" + instrumento.nome, instrumento.lerMedida(), qos)
     pass
@@ -44,15 +45,6 @@ client.connect(broker_address, broker_port)
 
 # Da tempo para o cliente se conectar. o metodo client.is_connected() esta sempre retornando falso, mesmo se o cliente estiver conectado, nao tenho certeza de por que.
 time.sleep(1)
-
-
-topico1_1 = "instrumentos/termometros/termometro_interno"
-topico1_2 = "instrumentos/termometros/termometro_externo"
-topico2 = "instrumentos/presenciometros"
-topico3 = "aparelhos/portas"
-topico4_1 = "aparelhos/ventiladores/ventilador_1"
-topico4_2 = "aparelhos/ventiladores/ventilador_2"
-topico5 = "aparelhos/termometros"
 
 
 client.subscribe("instrumentos/#", qos)
