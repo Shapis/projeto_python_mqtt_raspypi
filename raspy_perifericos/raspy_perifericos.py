@@ -1,14 +1,14 @@
 import time
 import paho.mqtt.client as mqtt
 import threading
-from clp import CLP
+import clp
 
 client = mqtt.Client()
 
 # Configura o nivel de qos.
 qos = 2
 
-meuCLP = CLP("CLP_1")
+meuCLP = clp.CLP("CLP_1")
 
 
 def checar_instrumentos():
