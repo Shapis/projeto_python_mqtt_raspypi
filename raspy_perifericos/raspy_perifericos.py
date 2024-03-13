@@ -45,7 +45,7 @@ def controle_luminaria(payload):
 def on_message(client, userdata, msg):
     print(f"Mensagem recebida no topico {msg.topic}: {msg.payload.decode()}")
     if msg.topic == "aparelhos/luminaria/exterior":
-        controle_luminaria(msg.payload.decode())
+        controle_luminaria(msg.payload.decode())qw!~a@T4F1
 
 
 client.on_message = on_message

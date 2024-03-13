@@ -1,3 +1,5 @@
+# https://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/
+
 import os
 import glob
 import time
