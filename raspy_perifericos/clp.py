@@ -4,8 +4,8 @@ from aparelho import Luminaria, Ventilador, Porta
 
 class CLP:
     instrumentos = [
-        Termometro("termometro/sala", "28-031600c442ff"),
-        Termometro("termometro/quarto", "28-031600c442ff"),
+        Termometro("termometro/sala", "28-031600ca07ff"),
+        Termometro("termometro/quarto", "28-031600ca07ff"),
         Presenciometro("presenciometro/porta", "codigo_aqui"),
     ]
     aparelhos = [
