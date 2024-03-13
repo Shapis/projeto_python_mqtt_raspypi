@@ -44,17 +44,17 @@ def distance():
     return distance
 
 
-print(f"{distance()}")
+# print(f"{distance()}")
 
 
-# if __name__ == "__main__":
-#     try:
-#         while True:
-#             dist = distance()
-#             print("Measured Distance = %.1f cm" % dist)
-#             time.sleep(1)
+if __name__ == "__main__":
+    try:
+        while True:
+            dist = distance()
+            print("Measured Distance = %.1f cm" % dist)
+            time.sleep(1)
 
-#         # Reset by pressing CTRL + C
-#     except KeyboardInterrupt:
-#         print("Measurement stopped by User")
-#         GPIO.cleanup()
+        # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+        print("Measurement stopped by User")
+        GPIO.cleanup()
