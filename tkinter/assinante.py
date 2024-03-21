@@ -7,7 +7,7 @@ class Assinante:
     def __init__(self):
         self.temperatura_quarto = 0
         self.temperatura_sala = 15
-        self.presenca_porta = "ausente"
+        self.presenca_porta = "false"
         self.client = mqtt.Client()
         self.client.on_message = self.on_message
 
@@ -19,8 +19,6 @@ class Assinante:
 
     def get_presenca_porta(self):
         return self.presenca_porta
-
-    client = mqtt.Client()
 
     # Configura o nivel de qos.
     qos = 2
@@ -35,8 +33,6 @@ class Assinante:
             self.presenca_porta = msg.payload.decode()
         if msg.topic == "aparelhos/luminaria/quarto":
             print("Luminaria do quarto")
-
-    client.on_message = on_message
 
     def conectar(self):
         # Conecta ao servidor.

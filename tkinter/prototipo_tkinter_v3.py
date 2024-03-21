@@ -52,12 +52,17 @@ class Application:
         self.msgtest = Label(self.frame, text="Aberta")
         self.msgtest.place(relx=0.83, rely=0.22)
 
-        self.msgtest = Label(self.frame, text="Ausente")
-        self.msgtest.place(relx=0.28, rely=0.22)
+        self.msgtest_presenca = Label(self.frame, text="Ausente")
+        self.msgtest_presenca.place(relx=0.28, rely=0.22)
         self.refresh_textos()
 
     def refresh_textos(self):
-
+        self.msgtest_presenca.destroy()
+        if self.assinante.get_presenca_porta() == "true":
+            self.msgtest_presenca = Label(self.frame, text="Presente")
+        elif self.assinante.get_presenca_porta() == "false":
+            self.msgtest_presenca = Label(self.frame, text="Ausente")
+        self.msgtest_presenca.place(relx=0.28, rely=0.22)
         self.root.after(1000, self.refresh_textos)
 
     def imagens(self):
