@@ -6,8 +6,9 @@ root = Tk()
 
 
 class Application:
-    def __init__(self):
+    def __init__(self, assinante):
         self.root = root
+        self.assinante = assinante
 
     def gerar_frame(self):
         self.tela()
@@ -53,6 +54,11 @@ class Application:
 
         self.msgtest = Label(self.frame, text="Ausente")
         self.msgtest.place(relx=0.28, rely=0.22)
+        self.refresh_textos()
+
+    def refresh_textos(self):
+
+        self.root.after(1000, self.refresh_textos)
 
     def imagens(self):
         clamp = "foto2.png"
@@ -90,9 +96,10 @@ class Application:
         self.canvas.create_text(
             centrox,
             centroy,
-            text=str(50) + "°C",
+            text="x",
             fill="black",
             font=("Arial", 9, "bold"),
+            tags="temp_quarto",
         )
         self.canvas.place(relx=0.448, rely=0.15)
         x3, y3 = 10, 10
@@ -105,33 +112,53 @@ class Application:
         self.canvas.create_text(
             centrox3,
             centroy3,
-            text=str(50) + "°C",
+            text="z",
             fill="black",
             font=("Arial", 9, "bold"),
-            tags="temp",
+            tags="temp_sala",
         )
         self.canvas.place(relx=0.62, rely=0.15)
-        self.refresh()
+        self.refresh_quadrados()
 
-    def update_temperature(self, temperature):
+    def update_temperature(self, temperatura_sala, temperatura_quarto):
+        x1, y1 = 10, 10
+        x2, y2 = 50, 30
+        centrox = (x1 + x2) // 2
+        centroy = (y1 + y2) // 2
+
+        self.canvas = Canvas(self.frame, width=50, height=50)
+        self.canvas.create_rectangle(x1, y1, x2, y2, outline="black", width=2)
+        self.canvas.delete("temp_quarto")
+        self.canvas.create_text(
+            centrox,
+            centroy,
+            text=str(temperatura_quarto),
+            fill="black",
+            font=("Arial", 9, "bold"),
+            tags="temp_quarto",
+        )
+        self.canvas.place(relx=0.448, rely=0.15)
         x3, y3 = 10, 10
         x4, y4 = 50, 30
         centrox3 = (x3 + x4) // 2
         centroy3 = (y3 + y4) // 2
-        self.canvas.delete("temp")  # remove o texto antigo
+
+        self.canvas = Canvas(self.frame, width=50, height=50)
+        self.canvas.create_rectangle(x3, y3, x4, y4, outline="black", width=2)
+        self.canvas.delete("temp_sala")
         self.canvas.create_text(
             centrox3,
             centroy3,
-            text=str(temperature) + "°C",
+            text=str(temperatura_sala),
             fill="black",
             font=("Arial", 9, "bold"),
-            tags="temp",  # adicione uma tag para facilitar a remoção posterior
+            tags="temp_sala",
         )
+        self.canvas.place(relx=0.62, rely=0.15)
 
-    tempor = 1
-
-    def refresh(self):
-        print("a")
-        self.update_temperature(self.tempor)
-        self.tempor = self.tempor + 1
-        self.root.after(1000, self.refresh)
+    def refresh_quadrados(self):
+        self.update_temperature(
+            self.assinante.get_temperatura_sala(),
+            self.assinante.get_temperatura_quarto(),
+        )
+        self.root.after(1000, self.refresh_quadrados)
