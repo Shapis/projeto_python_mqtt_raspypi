@@ -57,25 +57,28 @@ class Application:
         self.refresh_textos()
 
     def refresh_textos(self):
-        self.msgtest_presenca.destroy()
         if self.assinante.get_presenciometro() == "true":
+            self.msgtest_presenca.destroy()
             self.msgtest_presenca = Label(self.frame, text="Presente")
         elif self.assinante.get_presenciometro() == "false":
+            self.msgtest_presenca.destroy()
             self.msgtest_presenca = Label(self.frame, text="Ausente")
         self.msgtest_presenca.place(relx=0.28, rely=0.22)
 
-        self.msgtest_lampada.destroy()
         if self.assinante.get_luminaria_exterior() == "true":
+            self.msgtest_lampada.destroy()
             self.msgtest_lampada = Label(self.frame, text="Ligado")
         elif self.assinante.get_luminaria_exterior() == "false":
+            self.msgtest_lampada.destroy()
             self.msgtest_lampada = Label(self.frame, text="Desligado")
         self.msgtest_lampada.place(relx=0.075, rely=0.22)
 
-        self.msgtest_porta.destroy()
         if self.assinante.get_estado_porta() == "true":
+            self.msgtest_porta.destroy()
             self.msgtest_porta = Label(self.frame, text="Aberta")
         elif self.assinante.get_estado_porta() == "false":
-            self.msgtest_porta = Label(self.frame, text="Fechada")
+            self.msgtest_porta.destroy()
+            self.msgtest_porta = Label(self.frame, text="Fechado")
         self.msgtest_porta.place(relx=0.83, rely=0.22)
         self.root.after(1000, self.refresh_textos)
 
